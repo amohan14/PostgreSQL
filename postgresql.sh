@@ -28,11 +28,10 @@ create_table () {
   # Append to the pg_hba.conf
   # tee: Copy standard input to each FILE, and also to standard output
   echo "host    all             all             0.0.0.0/0               md5" | sudo tee -a /var/lib/pgsql/12/data/pg_hba.conf
-  # sudo cd ~postgres
-  # sudo su - postgres
   # Creating table and copying csv data to the table
-  sudo -u postgres psql -c "create table persons (id serial, first_name varchar(50), last_name varchar(50),dob date, email varchar(255), primary key (id) );"
-  sudo -u postgres psql -c "COPY persons(first_name, last_name, dob, email) FROM '/tmp/persons.csv' DELIMITER ',' CSV HEADER;"
+  # -i : login flag
+  sudo -u postgres -i psql -c "create table persons (id serial, first_name varchar(50), last_name varchar(50),dob date, email varchar(255), primary key (id) );"
+  sudo -u postgres -i psql -c "COPY persons(first_name, last_name, dob, email) FROM '/tmp/persons.csv' DELIMITER ',' CSV HEADER;"
   echo "Finished"
 }
 
