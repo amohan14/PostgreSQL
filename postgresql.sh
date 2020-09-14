@@ -26,7 +26,7 @@ create_table () {
   # Configure remote access
   sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /var/lib/pgsql/12/data/postgresql.conf
   # Append to the pg_hba.conf
-  echo "host    all             all             0.0.0.0/0               md5" | sudo tee -a /var/lib/pgsql/9.6/data/pg_hba.conf
+  echo "host    all             all             0.0.0.0/0               md5" | sudo tee -a /var/lib/pgsql/12/data/pg_hba.conf
   # sudo cd ~postgres
   # sudo su - postgres
   # Creating table and copying csv data to the table
