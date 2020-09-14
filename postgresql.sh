@@ -17,15 +17,17 @@ create_table () {
   echo "Create pgsql table and copy data to the table"
   cd $HOME
   # git clone the csv data to local
+  sudo yum install git -y
   sudo git clone https://github.com/amohan14/PostgreSQL.git
   # Moving the csv data file to /tmp folder as all users(including postgres user) can access /tmp folder
-  sudo mv /home/centos/PostgreSQL/persons.csv /tmp
+  sudo mv ~/PostgreSQL/persons.csv /tmp
   # Changing owner and access rights to the .csv file
   sudo chown postgres /tmp/persons.csv
   sudo chmod 755 /tmp/persons.csv
   # Configure remote access
   sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /var/lib/pgsql/12/data/postgresql.conf
   # Append to the pg_hba.conf
+  # tee: Copy standard input to each FILE, and also to standard output
   echo "host    all             all             0.0.0.0/0               md5" | sudo tee -a /var/lib/pgsql/12/data/pg_hba.conf
   # sudo cd ~postgres
   # sudo su - postgres
