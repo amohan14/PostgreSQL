@@ -15,7 +15,6 @@ install_pgsql () {
 # Create pgsql Database table and copy data to the table using postgres user
 create_table () {
   echo "Create pgsql table and copy data to the table"
-  cd $HOME
   # git clone the csv data to local
   sudo yum install git -y
   sudo git clone https://github.com/amohan14/PostgreSQL.git
