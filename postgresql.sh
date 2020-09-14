@@ -19,10 +19,12 @@ create_table () {
   # git clone the csv data to local
   sudo git clone https://github.com/amohan14/PostgreSQL.git
   # Moving the csv data file to /tmp folder as all users(including postgres user) can access /tmp folder
-  mv /root/PostgreSQL/persons.csv /tmp
+  mv /home/centos/PostgreSQL/persons.csv /tmp
   # Changing owner and access rights to the .csv file
   sudo chown postgres /tmp/persons.csv
   sudo chmod 755 /tmp/persons.csv
+  sudo cd ~postgres
+  # sudo -u postgres -i
   sudo su - postgres
   # Creating table and copying csv data to the table
   psql -c "create table persons (id serial, first_name varchar(50), last_name varchar(50),dob date, email varchar(255), primary key (id) );"
