@@ -19,7 +19,7 @@ create_table () {
   # git clone the csv data to local
   sudo git clone https://github.com/amohan14/PostgreSQL.git
   # Moving the csv data file to /tmp folder as all users(including postgres user) can access /tmp folder
-  mv /home/centos/PostgreSQL/persons.csv /tmp
+  sudo mv /home/centos/PostgreSQL/persons.csv /tmp
   # Changing owner and access rights to the .csv file
   sudo chown postgres /tmp/persons.csv
   sudo chmod 755 /tmp/persons.csv
